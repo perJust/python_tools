@@ -29,7 +29,7 @@ def isFileExit():
     return os.path.exists(tmp_file)
 # 获取缓存文件内的行数
 def getFileRowLen():
-    return len(open(tmp_file).readlines())
+    return len(open(tmp_file, encoding='gbk').readlines())
 # 展示当前问题
 def showCurrQuestion(q):
     if q == None:
@@ -47,7 +47,7 @@ def timeView():
 # 随机获取一个问题并进行展示并返回问题
 def getQuestionByRandom():
     if isFileExit():
-        q_list = open(tmp_file).readlines()
+        q_list = open(tmp_file, encoding='gbk').readlines()
         randomQuestion = q_list[random.randint(0,getFileRowLen() - 1)]
         showCurrQuestion(randomQuestion)
         return randomQuestion
@@ -67,13 +67,13 @@ def getInp():
         return
     if isFileExit():
         # 追加内容
-        f = open('q-list.txt', 'a', encoding='utf-8')
+        f = open('q-list.txt', 'a', encoding='gbk')
         oldLen = getFileRowLen()
         f.write("{}. {}".format(str(oldLen+1),inp))
         f.write('\n')
         f.close()
     else:
-        f = open('q-list.txt', 'w', encoding='utf-8')
+        f = open('q-list.txt', 'w', encoding='gbk')
         f.write("1. {}".format(inp))
         f.write('\n')
         f.close()
